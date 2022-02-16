@@ -1,49 +1,43 @@
-{% extends 'main/base.html' %}
-{% block title %}
-    Weather
-{% endblock %}
-{% block body %}
-            <div class="container">
+{% extends 'main/base.html' %} {% block title %} Weather {% endblock %} {% block
+body %}
+<div class="container">
+    <div class="row">
+        <div class="col-5 offset-1">
+            <h1>Weather app</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="city" style="padding-bottom: 2px">City</label>
+                {{ form.name }}
+                <input
+                    type="submit"
+                    name="send"
+                    value="Discover"
+                    class="mt-2 btn btn-outline-primary"
+                />
+            </form>
+        </div>
+        <div class="col-4 offset-1">
+            <h1>Information</h1>
+
+            {% for info in all_info %}
+            <div class="alert alert-secondary">
                 <div class="row">
-                    <div class="col-5 offset-1">
-                        <h1>Weather app</h1>
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <label for="city" style="padding-bottom:2px;">City</label>
-                            {{ form.name }}
-                            <input
-                                type="submit"
-                                name="send"
-                                value="Discover"
-                                class="mt-2 btn btn-outline-primary"
-                            />
-                        </form>
+                    <div class="col-8">
+                        <b>City:</b> {{ info.city }}<br />
+                        <b>Temperature:</b> {{ info.temp }}
+                        <sup>o</sup>
                     </div>
-                    <div class="col-4 offset-1">
-                        <h1>Information</h1>
-
-
-                        {% for info in all_info %}
-                        <div class="alert alert-secondary">
-                            <div class="row">
-                                <div class="col-8">
-                                    <b>City:</b> {{ info.city }}<br/>
-                                    <b>Temperature:</b> {{ info.temp }}
-                                    <sup>o</sup>
-                                </div>
-                                <div class="col-3 offset-0">
-                                    <img
-                                        src="http://openweathermap.org/img/w/{{ info.icon }}.png"
-                                        alt="Img weather"
-                                        class="rounded float-start"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    
-                    
+                    <div class="col-3 offset-0">
+                        <img
+                            src="http://openweathermap.org/img/w/{{ info.icon }}.png"
+                            alt="Img weather"
+                            class="rounded float-start"
+                        />
                     </div>
                 </div>
             </div>
-            {% endblock %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
