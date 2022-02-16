@@ -9,13 +9,13 @@
                         <h1>Weather app</h1>
                         <form action="" method="post">
                             {% csrf_token %}
-                            <label for="city">City</label>
+                            <label for="city" style="padding-bottom:2px;">City</label>
                             {{ form.name }}
                             <input
                                 type="submit"
                                 name="send"
                                 value="Discover"
-                                class="mt-2 btn btn-danger"
+                                class="mt-2 btn btn-outline-primary"
                             />
                         </form>
                     </div>
@@ -24,10 +24,10 @@
 
 
                         {% for info in all_info %}
-                        <div class="alert alert-info">
+                        <div class="alert alert-secondary">
                             <div class="row">
                                 <div class="col-8">
-                                    <b>City:</b> {{ info.city }}<br />
+                                    <b>City:</b> {{ info.city }}<br/>
                                     <b>Temperature:</b> {{ info.temp }}
                                     <sup>o</sup>
                                 </div>
